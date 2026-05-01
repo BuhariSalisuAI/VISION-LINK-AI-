@@ -1,49 +1,29 @@
 <div align="center">
 
 # VISION-LINK AI
-**Multilingual Health QA Assistant for Low-Resource Languages**
+**AI-Driven Platform for Multilingual Health Accessibility and Disability Inclusion**
 
 [![Status: Active Development](https://img.shields.io/badge/Status-Active_Development-black?style=for-the-badge)](#)
-[![Hardware: AMD MI300X](https://img.shields.io/badge/Hardware-AMD_MI300X-blue?style=for-the-badge&logo=amd)](#)
-[![Framework: PyTorch](https://img.shields.io/badge/Framework-PyTorch-red?style=for-the-badge&logo=pytorch)](#)
+[![Hardware: AMD Infrastructure](https://img.shields.io/badge/Hardware-AMD-blue?style=for-the-badge&logo=amd)](#)
+[![Hackathon: Lablab.ai](https://img.shields.io/badge/Hackathon-Lablab.ai-purple?style=for-the-badge)](#)
 
-*Bridging the healthcare information gap using state-of-the-art NLP, RAG architecture, and AMD Infrastructure.*
+*Building innovative AI Agents and Computer Vision solutions to bridge the gap in digital accessibility.*
 
 <br>
 </div>
 
 ## Executive Summary
-**VISION-LINK AI** is an optimized Large Language Model (LLM) assistant specifically fine-tuned to process and accurately answer maternal and reproductive health inquiries in low-resource African languages, prioritizing Swahili, Akan, and Luganda. 
+**VISION-LINK AI** is designed to address critical gaps in digital accessibility, specifically focusing on multilingual health information and disability inclusion. 
 
-Developed for the **Zindi Multilingual Health QA Challenge**, this architecture leverages **AMD Developer Cloud** hardware acceleration to deliver rapid, culturally contextual, and medically grounded healthcare information retrieval to populations facing severe digital accessibility barriers.
+Developed for the **Lablab.ai AMD Developer Hackathon**, our solution leverages AI agents and computer vision, utilizing AMD infrastructure to ensure scalable, high-performance deployment.
 
-## Architecture & Technical Pipeline
-Our solution is built on a modular machine learning pipeline designed for high-throughput inference and rigorous semantic accuracy.
-
-### 1. Hardware Infrastructure
-*   **Compute:** AMD MI300X Accelerators via the AMD Developer Cloud.
-*   **Optimization:** Native ROCm support leveraged through PyTorch for accelerated tensor operations during fine-tuning and inference.
-
-### 2. Data Processing & Ingestion
-*   **Corpus:** Fine-tuned on a verified, structured dataset of approximately 30,000 Zindi medical records.
-*   **Pipeline:** Raw CSV data is aggressively cleaned, deduplicated, and tokenized before being structured into JSONL formats optimized for LLM instruction-tuning.
-
-### 3. Retrieval-Augmented Generation (RAG)
-To prevent medical hallucinations, the model relies on a robust RAG framework. Queries are cross-referenced against an embedded vector database of localized medical literature, ensuring all generated responses are grounded in factual, peer-reviewed contexts.
+## Core Focus Areas
+Based on our project mandate, the architecture is centered around:
+*   **Multilingual Health Accessibility:** Breaking down language barriers in healthcare information.
+*   **Disability Inclusion:** Implementing computer vision and AI agent solutions to make digital spaces more accessible.
+*   **Hardware Optimization:** Developing and deploying on AMD Developer Cloud infrastructure for maximum efficiency.
 
 ## Repository Structure
-*(Note: Complete source files are currently syncing from the staging environment)*
 ```text
 VISION-LINK-AI-/
-├── data/
-│   ├── raw/                 # Unprocessed Zindi medical CSVs
-│   ├── processed/           # Tokenized JSONL instruction sets
-│   └── embeddings/          # Vector stores for RAG implementation
-├── src/
-│   ├── data_prep/           # Scripts for data cleaning and formatting
-│   ├── training/            # Fine-tuning scripts utilizing AMD ROCm
-│   └── inference/           # Query handling and RAG logic
-├── notebooks/               # Jupyter notebooks for EDA and evaluation
-├── api/                     # FastAPI endpoints for interface integration
-├── requirements.txt         # Project dependencies
-└── README.md                # System documentation
+└── [ Repository initialization pending source synchronization from development environment ]
