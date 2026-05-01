@@ -1,0 +1,56 @@
+import { Switch, Route, Router as WouterRouter } from "wouter";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Layout from "@/components/Layout";
+import Dashboard from "@/pages/Dashboard";
+import UploadPage from "@/pages/Upload";
+import Results from "@/pages/Results";
+import History from "@/pages/History";
+import MaternityWing from "@/pages/MaternityWing";
+import GeneralMedicine from "@/pages/GeneralMedicine";
+import VitalSigns from "@/pages/VitalSigns";
+import PatientID from "@/pages/PatientID";
+import NotFound from "@/pages/not-found";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      staleTime: 30_000,
+    },
+  },
+});
+
+function Router() {
+  return (
+    <Layout>
+      <Switch>
+        <Route path="/" component={Dashboard} />
+        <Route path="/upload" component={UploadPage} />
+        <Route path="/results/:id" component={Results} />
+        <Route path="/history" component={History} />
+        <Route path="/maternity" component={MaternityWing} />
+        <Route path="/general-medicine" component={GeneralMedicine} />
+        <Route path="/vital-signs" component={VitalSigns} />
+        <Route path="/patient-id" component={PatientID} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
+  );
+}
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <Router />
+        </WouterRouter>
+        <Toaster />
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default App;
