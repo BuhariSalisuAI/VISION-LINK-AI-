@@ -1,27 +1,27 @@
 <div align="center">
 
 # VISION-LINK AI
-**AI-Driven Platform for Multilingual Health Accessibility and Disability Inclusion**
+**Multilingual Health QA Assistant for Low-Resource Languages**
 
 [![Status: Active Development](https://img.shields.io/badge/Status-Active_Development-black?style=for-the-badge)](#)
-[![Hardware: AMD Infrastructure](https://img.shields.io/badge/Hardware-AMD-blue?style=for-the-badge&logo=amd)](#)
-[![Hackathon: Lablab.ai](https://img.shields.io/badge/Hackathon-Lablab.ai-purple?style=for-the-badge)](#)
+[![Hardware: AMD MI300X](https://img.shields.io/badge/Hardware-AMD_MI300X-blue?style=for-the-badge&logo=amd)](#)
+[![Framework: PyTorch](https://img.shields.io/badge/Framework-PyTorch-red?style=for-the-badge&logo=pytorch)](#)
 
-*Building innovative AI Agents and Computer Vision solutions to bridge the gap in digital accessibility.*
+*Bridging the healthcare information gap using State-of-the-Art NLP on AMD Infrastructure.*
 
 <br>
 </div>
 
-## Executive Summary
-**VISION-LINK AI** is designed to address critical gaps in digital accessibility, specifically focusing on multilingual health information and disability inclusion. 
+## Project Overview
+**VISION-LINK AI** is an optimized Large Language Model (LLM) assistant specifically fine-tuned to process and answer maternal and reproductive health inquiries in low-resource African languages (including Swahili, Akan, and Luganda). 
 
-Developed for the **Lablab.ai AMD Developer Hackathon**, our solution leverages AI agents and computer vision, utilizing AMD infrastructure to ensure scalable, high-performance deployment.
+Developed for the **Zindi Multilingual Health QA Challenge**, this architecture leverages **AMD Developer Cloud** hardware acceleration to deliver rapid, accurate, and culturally contextual healthcare information retrieval.
 
-## Core Focus Areas
-Based on our project mandate, the architecture is centered around:
-*   **Multilingual Health Accessibility:** Breaking down language barriers in healthcare information.
-*   **Disability Inclusion:** Implementing computer vision and AI agent solutions to make digital spaces more accessible.
-*   **Hardware Optimization:** Developing and deploying on AMD Developer Cloud infrastructure for maximum efficiency.
+## Core Architecture & Features
+*   **Multilingual Inference Pipeline:** Optimized for processing and generating accurate semantic responses in Swahili, Akan, and Luganda.
+*   **Hardware Acceleration:** High-speed training and inference pipelines utilizing AMD MI300X accelerators.
+*   **Domain-Specific Tuning:** Fine-tuned on a verified dataset of approximately 30,000 Zindi medical records.
+*   **RAG Implementation:** Utilizes Retrieval-Augmented Generation to ensure all model outputs are grounded in factual, medical-grade datasets.
 
 ## Repository Structure
 ```text
