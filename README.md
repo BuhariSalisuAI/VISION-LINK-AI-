@@ -6,6 +6,7 @@
 [![Status: Active Development](https://img.shields.io/badge/Status-Active_Development-black?style=for-the-badge)](#)
 [![Hardware: AMD MI300X](https://img.shields.io/badge/Hardware-AMD_MI300X-blue?style=for-the-badge&logo=amd)](#)
 [![Framework: PyTorch](https://img.shields.io/badge/Framework-PyTorch-red?style=for-the-badge&logo=pytorch)](#)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000)](#)
 
 *Bridging the healthcare information gap using State-of-the-Art NLP on AMD Infrastructure.*
 
@@ -22,6 +23,11 @@ Developed for the **Zindi Multilingual Health QA Challenge**, this architecture 
 *   **Hardware Acceleration:** High-speed training and inference pipelines utilizing AMD MI300X accelerators.
 *   **Domain-Specific Tuning:** Fine-tuned on a verified dataset of approximately 30,000 Zindi medical records.
 *   **RAG Implementation:** Utilizes Retrieval-Augmented Generation to ensure all model outputs are grounded in factual, medical-grade datasets.
+
+## Hugging Face Integration
+Our model ecosystem is integrated with Hugging Face for seamless accessibility and deployment.
+*   **Model Weights & Repository:** `[ Link pending source synchronization ]`
+*   **Interactive Demo (Space):** `[ Link pending deployment ]`
 
 ## Repository Structure
 ```text
