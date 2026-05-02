@@ -9,7 +9,7 @@ import Results from "@/pages/Results";
 import History from "@/pages/History";
 import MaternityWing from "@/pages/MaternityWing";
 import GeneralMedicine from "@/pages/GeneralMedicine";
-import VitalSigns from "@/pages/VitalSigns";
+import VitalSigns from "@/pages/VitalSigns";  
 import PatientID from "@/pages/PatientID";
 import NotFound from "@/pages/not-found";
 
