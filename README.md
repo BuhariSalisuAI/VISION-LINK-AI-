@@ -42,6 +42,7 @@ Our model ecosystem is integrated with Hugging Face for seamless accessibility a
 The codebase is currently being structured for the final submission.
 ```text
 VISION-LINK-AI/
+|── documentation /          # # Documentation  
 ├── backend/                 # AI/RAG Pipeline & PyTorch Models
 ├── frontend/                # React Web Application
 │   └── src/
