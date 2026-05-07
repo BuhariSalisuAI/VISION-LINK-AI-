@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+pydantic-settings
+sentence-transformers
+faiss-cpu
+transformers
+torch
+accelerate
