@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Sidebar</class>
+ <widget class="QWidget" name="Sidebar">
+  <layout class="QVBoxLayout">
+
+   <item>
+    <widget class="QPushButton" name="btnChat">
+     <property name="text"><string>Chat</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QPushButton" name="btnMaternity">
+     <property name="text"><string>Maternity</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QPushButton" name="btnVitals">
+     <property name="text"><string>Vitals</string></property>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

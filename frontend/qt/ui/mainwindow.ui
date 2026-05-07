@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VISION-LINK AI Dashboard</string>
+  </property>
+
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+
+    <!-- Sidebar -->
+    <item>
+     <widget class="QFrame" name="sidebar">
+      <property name="minimumWidth">
+       <number>200</number>
+      </property>
+      <layout class="QVBoxLayout" name="sidebarLayout">
+
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="text">
+          <string>VISION-LINK AI</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="styleSheet">
+          <string>font-size:18px; font-weight:bold;</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnChat">
+         <property name="text">
+          <string>💬 Chat</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnMaternity">
+         <property name="text">
+          <string>🤰 Maternity</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnGeneral">
+         <property name="text">
+          <string>🩺 General</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnVitals">
+         <property name="text">
+          <string>📊 Vitals</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+    <!-- Main Content -->
+    <item>
+     <widget class="QFrame" name="mainContent">
+      <layout class="QVBoxLayout" name="mainLayout">
+
+       <!-- Chat Display -->
+       <item>
+        <widget class="QTextEdit" name="chatOutput">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>AI responses will appear here...</string>
+         </property>
+        </widget>
+       </item>
+
+       <!-- Input Row -->
+       <item>
+        <layout class="QHBoxLayout" name="inputLayout">
+
+         <item>
+          <widget class="QLineEdit" name="chatInput">
+           <property name="placeholderText">
+            <string>Type your medical question...</string>
+           </property>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QPushButton" name="sendButton">
+           <property name="text">
+            <string>Send</string>
+           </property>
+          </widget>
+         </item>
+
+        </layout>
+       </item>
+
+      </layout>
+     </widget>
+    </item>
+
+   </layout>
+  </widget>
+
+  <!-- Status Bar -->
+  <widget class="QStatusBar" name="statusbar"/>
+
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
