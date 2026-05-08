@@ -1,28 +1,96 @@
 # app/models/inference_engine.py
 
+# pyright: reportAttributeAccessIssue=false
+
 import torch
-from app.models.llm_loader import load_model
+
+from app.models.llm_loader import (
+    model,
+    tokenizer
+)
+
+print("🚀 Initializing inference engine...")
+print("✅ Inference engine ready")
 
 
-def generate(prompt: str, max_new_tokens: int = 200):
-    tokenizer, model = load_model()
+def generate_response(
+    prompt: str,
+    language: str = "en"
+) -> str:
 
+    # =========================
+    # Optimized Prompt
+    # =========================
+    system_prompt = f"""
+You are Vision-Link AI,
+a multilingual healthcare assistant.
+
+Respond in {language}.
+
+User: {prompt}
+
+Answer:
+"""
+
+    # =========================
+    # Tokenize
+    # =========================
     inputs = tokenizer(
-        prompt,
+        system_prompt,
         return_tensors="pt"
-    ).to(model.device)
+    )
 
+    # Move tensors to model device
+    inputs = {
+        key: value.to(model.device)
+        for key, value in inputs.items()
+    }
+
+    # =========================
+    # Generate Response
+    # =========================
     with torch.no_grad():
+
         outputs = model.generate(
             **inputs,
-            max_new_tokens=max_new_tokens,
-            temperature=0.7,
-            do_sample=True
+
+            # FAST CPU SETTINGS
+            max_new_tokens=20,
+
+            do_sample=False,
+
+            # Greedy decoding
+            num_beams=1,
+
+            # Faster inference
+            use_cache=True,
+
+            # Prevent warnings
+            pad_token_id=tokenizer.eos_token_id,
+            eos_token_id=tokenizer.eos_token_id
         )
 
-    response = tokenizer.decode(
+    # =========================
+    # Decode
+    # =========================
+    generated_text = tokenizer.decode(
         outputs[0],
         skip_special_tokens=True
     )
 
-    return response
+    # =========================
+    # Clean Output
+    # =========================
+    cleaned_text = (
+        generated_text
+        .replace(system_prompt, "")
+        .strip()
+    )
+
+    # =========================
+    # Fallback
+    # =========================
+    if not cleaned_text:
+        cleaned_text = "Hello! How can I help you?"
+
+    return cleaned_text

@@ -1,28 +1,62 @@
 # app/models/llm_loader.py
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from typing import Any
+
 import torch
 
-MODEL_NAME = "microsoft/Phi-3-mini-4k-instruct"
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM
+)
 
-tokenizer = None
-model = None
+from app.config import settings
 
+print("🚀 Loading LLM...")
 
-def load_model():
-    global tokenizer, model
+# =========================
+# Model Name
+# =========================
+MODEL_NAME: str = settings.MODEL_NAME
 
-    if model is None:
-        print("🚀 Loading LLM...")
+# =========================
+# Device
+# =========================
+DEVICE: str = settings.DEVICE
 
-        tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+# =========================
+# Tokenizer
+# =========================
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL_NAME,
+    trust_remote_code=True
+)
 
-        model = AutoModelForCausalLM.from_pretrained(
-            MODEL_NAME,
-            torch_dtype=torch.float16,
-            device_map="auto"
-        )
+# Fix missing pad token
+if tokenizer.pad_token is None:
+    tokenizer.pad_token = tokenizer.eos_token
 
-        print("✅ Model loaded")
+# =========================
+# Load Model
+# =========================
+model: Any = AutoModelForCausalLM.from_pretrained(
+    MODEL_NAME,
 
-    return tokenizer, model
+    # Faster CPU inference
+    # torch_dtype=torch.float32,
+      dtype=torch.float32,
+
+    # Reduce RAM usage
+    low_cpu_mem_usage=True,
+
+    trust_remote_code=True
+)
+
+# =========================
+# Move model to device
+# =========================
+model.to(DEVICE)
+
+# Evaluation mode
+model.eval()
+
+print("✅ Model loaded successfully")

@@ -3,17 +3,11 @@
 from pydantic import BaseModel
 from typing import Optional
 
-
 class ChatResponse(BaseModel):
-    """
-    Standard chat response
-    """
 
     response: str
-    language: str
-    source: Optional[str] = None
-    success: bool = True
-
+    status: str = "success"
+    
 
 class ErrorResponse(BaseModel):
     """

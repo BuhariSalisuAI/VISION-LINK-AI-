@@ -1,6 +1,6 @@
 # app/config.py
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -8,37 +8,51 @@ class Settings(BaseSettings):
     Global application settings
     """
 
-    # -------------------------
+    # =========================
     # App Info
-    # -------------------------
+    # =========================
     APP_NAME: str = "Vision-Link AI"
     VERSION: str = "1.0.0"
     DEBUG: bool = True
 
-    # -------------------------
+    # =========================
     # API
-    # -------------------------
+    # =========================
     API_HOST: str = "0.0.0.0"
     API_PORT: int = 8000
 
-    # -------------------------
-    # Model Settings
-    # -------------------------
-    MODEL_NAME: str = "microsoft/Phi-3-mini-4k-instruct"
+    # =========================
+    # AI Model
+    # =========================
+    MODEL_NAME: str = "Qwen/Qwen2.5-0.5B-Instruct"
 
-    MAX_NEW_TOKENS: int = 200
-    TEMPERATURE: float = 0.7
+    DEVICE: str = "cpu"
 
-    # -------------------------
+    MAX_NEW_TOKENS: int = 64
+    TEMPERATURE: float = 0.5
+
+    # =========================
+    # Hugging Face Cache
+    # =========================
+    HF_HOME: str = "D:/huggingface"
+    TRANSFORMERS_CACHE: str = "D:/huggingface/transformers"
+    HUGGINGFACE_HUB_CACHE: str = "D:/huggingface/hub"
+
+    HF_HUB_DISABLE_SYMLINKS_WARNING: int = 1
+    HF_HUB_DISABLE_TELEMETRY: int = 1
+
+    # =========================
     # Embeddings / RAG
-    # -------------------------
-    EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
+    # =========================
+    EMBEDDING_MODEL: str = (
+        "sentence-transformers/all-MiniLM-L6-v2"
+    )
 
     VECTOR_DB_PATH: str = "data/vector_store"
 
-    # -------------------------
+    # =========================
     # Languages
-    # -------------------------
+    # =========================
     DEFAULT_LANGUAGE: str = "en"
 
     SUPPORTED_LANGUAGES: list[str] = [
@@ -48,14 +62,19 @@ class Settings(BaseSettings):
         "lg"
     ]
 
-    # -------------------------
+    # =========================
     # Security
-    # -------------------------
+    # =========================
     SECRET_KEY: str = "vision-link-ai-secret"
 
-    class Config:
-        env_file = ".env"
+    # =========================
+    # Pydantic Settings
+    # =========================
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        extra="ignore"
+    )
 
 
-# Global settings instance
+# Global settings object
 settings = Settings()
