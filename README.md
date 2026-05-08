@@ -8,6 +8,7 @@
 [![Framework: PyTorch](https://img.shields.io/badge/Framework-PyTorch-red?style=for-the-badge&logo=pytorch)](#)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000)](#)
 [![Frontend: React](https://img.shields.io/badge/Frontend-React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](#)
+[![Desktop UI: Qt](https://img.shields.io/badge/Desktop_UI-Qt-41CD52?style=for-the-badge&logo=qt&logoColor=white)](#)
 
 > *Bridging the healthcare information gap using State-of-the-Art NLP on AMD Infrastructure.*
 
