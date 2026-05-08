@@ -32,8 +32,19 @@ void MainWindow::setupConnections()
             this, &MainWindow::onSendClicked);
 
     // API response
-    connect(apiClient, &ApiClient::responseReceived,
-            this, &MainWindow::handleApiResponse);
+    // connect(apiClient, &ApiClient::responseReceived,
+    //         this, &MainWindow::handleApiResponse);
+
+    connect(
+        apiClient,
+        &ApiClient::responseReceived,
+        this,
+        [this](const QString &response)
+        {
+            ui->chatOutput->append(
+                "🤖 AI: " + response
+                );
+        });
 }
 
 void MainWindow::onSendClicked()
