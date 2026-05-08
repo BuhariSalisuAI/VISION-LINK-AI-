@@ -45,6 +45,11 @@ The codebase is currently being structured for the final submission.
 VISION-LINK-AI/
 |── documentation/           # Documentation  
 ├── backend/                 # AI/RAG Pipeline & PyTorch Models
+|     ├── app/           
+│       ├── .env      
+│       └── pyrightconfig.json      
+│       └── requirements.txt      
+│       └── start_backend.bat 
 ├── frontend/                # React Web Application
 │   └── src/
 │       ├── pages/           # Dashboard, MaternityWing, VitalSigns, etc.
