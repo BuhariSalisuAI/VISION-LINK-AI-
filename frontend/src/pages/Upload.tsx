@@ -14,13 +14,10 @@ interface FileItem {
   lang: string;
   status: "pending" | "processing" | "done" | "error";
   progress: number;
+  file?: File;
 }
 
-const initialFiles: FileItem[] = [
-  { id: "1", name: "maternal_health_swahili_batch4.csv", size: "2.4 MB", lang: "Swahili", status: "done", progress: 100 },
-  { id: "2", name: "akan_reproductive_qa_set2.json", size: "1.8 MB", lang: "Akan", status: "done", progress: 100 },
-  { id: "3", name: "luganda_postnatal_records.csv", size: "3.1 MB", lang: "Luganda", status: "processing", progress: 64 },
-];
+const initialFiles: FileItem[] = [];
 
 const statusIcon = {
   pending: <AlertCircle className="h-4 w-4 text-amber-400" />,
@@ -30,27 +27,59 @@ const statusIcon = {
 };
 
 const langColor: Record<string, string> = {
-  Swahili: "bg-sky-500/15 text-sky-400",
-  Akan: "bg-cyan-500/15 text-cyan-400",
-  Luganda: "bg-indigo-500/15 text-indigo-400",
+  DNA: "bg-violet-500/15 text-violet-400",
+  RNA: "bg-fuchsia-500/15 text-fuchsia-400",
+  Protein: "bg-rose-500/15 text-rose-400",
+  Sample: "bg-slate-500/15 text-slate-400",
 };
+
+const sampleImages = [
+  { label: "DNA Sequence", src: "/DNA.jpeg" },
+  { label: "RNA Sequence", src: "/RNA.jpeg" },
+  { label: "Protein Sequence", src: "/Proteins.jpeg" },
+];
 
 export default function UploadPage() {
   const [files, setFiles] = useState<FileItem[]>(initialFiles);
   const [dragging, setDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const addFile = (name: string) => {
-    const langs = ["Swahili", "Akan", "Luganda"];
+  const inferType = (name: string) => {
+    const lower = name.toLowerCase();
+    if (lower.includes("dna")) return "DNA";
+    if (lower.includes("rna")) return "RNA";
+    if (lower.includes("protein")) return "Protein";
+    return "Sample";
+  };
+
+  const addFile = (name: string, file?: File) => {
+    const fileType = inferType(name);
     const newFile: FileItem = {
       id: Date.now().toString(),
       name,
       size: `${(Math.random() * 4 + 0.5).toFixed(1)} MB`,
-      lang: langs[Math.floor(Math.random() * langs.length)],
+      lang: fileType,
       status: "processing",
       progress: Math.floor(Math.random() * 60) + 10,
+      file,
     };
     setFiles((prev) => [newFile, ...prev]);
+  };
+
+  const handleFileUpload = async (file: File) => {
+    addFile(file.name, file);
+    // TODO: connect this to your AI pipeline if available.
+    // Example: await analyzeImage(file);
+  };
+
+  const handleUseSample = async (sample: (typeof sampleImages)[number]) => {
+    const response = await fetch(sample.src);
+    const blob = await response.blob();
+    const extension = sample.src.split('.').pop() || 'jpg';
+    const file = new File([blob], `${sample.label.replace(/ /g, '_').toLowerCase()}.${extension}`, {
+      type: blob.type,
+    });
+    await handleFileUpload(file);
   };
 
   const removeFile = (id: string) => setFiles((prev) => prev.filter((f) => f.id !== id));
@@ -58,21 +87,21 @@ export default function UploadPage() {
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setDragging(false);
-    Array.from(e.dataTransfer.files).forEach((f) => addFile(f.name));
+    Array.from(e.dataTransfer.files).forEach((f) => handleFileUpload(f));
   };
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Upload Records</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Upload Sequence Image</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Add multilingual health QA datasets to the training pipeline
+          Upload a DNA/RNA/Protein sequence image or use a sample image for quick inference.
         </p>
       </div>
 
       <Tabs defaultValue="upload">
         <TabsList>
-          <TabsTrigger value="upload">Upload Files</TabsTrigger>
+          <TabsTrigger value="upload">Upload Images</TabsTrigger>
           <TabsTrigger value="queue">Processing Queue</TabsTrigger>
         </TabsList>
 
@@ -91,23 +120,53 @@ export default function UploadPage() {
               <CloudUpload className="h-7 w-7 text-primary" />
             </div>
             <div className="text-center">
-              <p className="font-semibold text-foreground">Drop files here or click to browse</p>
-              <p className="text-sm text-muted-foreground mt-1">Supports CSV, JSON, JSONL, TXT — max 50 MB per file</p>
+              <p className="font-semibold text-foreground">Drop an image here or click to browse</p>
+              <p className="text-sm text-muted-foreground mt-1">Supports JPG, PNG, GIF — max 50 MB per image</p>
             </div>
             <div className="flex flex-wrap gap-2 justify-center">
-              {["Swahili", "Akan", "Luganda"].map((lang) => (
+              {["DNA", "RNA", "Protein"].map((lang) => (
                 <span key={lang} className={`rounded-full px-3 py-1 text-xs font-medium ${langColor[lang]}`}>{lang}</span>
               ))}
             </div>
-            <input ref={inputRef} type="file" multiple className="hidden" accept=".csv,.json,.jsonl,.txt"
-              onChange={(e) => { Array.from(e.target.files || []).forEach((f) => addFile(f.name)); }} />
+            <input ref={inputRef} type="file" multiple className="hidden" accept="image/*"
+              onChange={(e) => { Array.from(e.target.files || []).forEach((f) => handleFileUpload(f)); }} />
+          </div>
+
+          <div className="rounded-3xl border border-border/70 bg-card p-4">
+            <div className="flex flex-col gap-2">
+              <div>
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Quick Test / Examples</p>
+                <h2 className="text-base font-semibold">Sample Images for Judges</h2>
+              </div>
+              <p className="text-sm text-muted-foreground">Click a sample to load it into the queue and preview how the AI can analyze DNA/RNA/Protein sequences.</p>
+            </div>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {sampleImages.map((sample) => (
+                <div key={sample.label} className="overflow-hidden rounded-3xl border border-border/60 bg-background transition hover:border-primary/60 hover:bg-primary/5">
+                  <div className="overflow-hidden rounded-t-3xl bg-muted">
+                    <img
+                      src={sample.src}
+                      alt={`Sample ${sample.label}`}
+                      className="h-36 w-full object-cover"
+                    />
+                  </div>
+                  <div className="px-4 py-4">
+                    <p className="text-sm font-medium text-foreground">{sample.label}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Preview image for quick judge testing</p>
+                    <Button variant="secondary" className="mt-4 w-full" onClick={() => handleUseSample(sample)}>
+                      Use Sample Image
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
             {[
-              { label: "Accepted Formats", value: "CSV, JSON, JSONL, TXT" },
+              { label: "Accepted Formats", value: "JPG, PNG, GIF" },
               { label: "Max File Size", value: "50 MB" },
-              { label: "Auto-Language Detection", value: "Enabled" },
+              { label: "Ready for AI Analysis", value: "Image-driven inference" },
             ].map(({ label, value }) => (
               <Card key={label}>
                 <CardContent className="pt-5 pb-4">

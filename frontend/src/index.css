@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  /* App theme tokens (used by Tailwind classes like bg-background, text-muted-foreground, etc.) */
+  --background: 20 12 35; /* deep purple night */
+  --foreground: 236 241 255;
+
+  --muted: 18 14 36;
+  --muted-foreground: 168 179 255;
+
+  --card: 24 14 45;
+  --card-foreground: 236 241 255;
+
+  --popover: 24 14 45;
+  --popover-foreground: 236 241 255;
+
+  --border: 57 36 101;
+  --input: 42 26 88;
+  --ring: 168 139 255; /* purple ring */
+
+  --primary: 147 102 255; /* violet action color */
+  --primary-foreground: 255 255 255;
+
+  --secondary: 72 52 136;
+  --secondary-foreground: 226 232 240;
+
+  --accent: 129 140 248; /* indigo accent */
+  --accent-foreground: 255 255 255;
+
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+
+  --sidebar: 14 7 32;
+  --sidebar-foreground: 236 241 255;
+  --sidebar-border: 44 24 89;
+  --sidebar-accent: 29 14 63;
+  --sidebar-primary: 168 139 255;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(var(--background));
+  background-image:
+    radial-gradient(circle at top left, rgba(168, 139, 255, 0.18), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(79, 70, 229, 0.14), transparent 28%),
+    linear-gradient(135deg, rgba(12, 6, 29, 1), rgba(35, 17, 80, 0.96));
+  background-attachment: fixed;
+}
+
+/* Medical Blue and Bio-Green action colors */
+@layer base {
+  :root {
+    --medical-blue: 30 108 188; /* Professional medical action blue */
+    --bio-green: 76 175 80; /* Professional biological/success green */
+  }
+}
+
+/* Optional: if user prefers light mode, keep a light palette */
+/* Light mode is disabled so the dashboard keeps the original dark theme. */
+html {
+  color-scheme: dark;
+}

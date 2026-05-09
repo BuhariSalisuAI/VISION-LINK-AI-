@@ -125,6 +125,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo.jpeg"
+              alt="Vision-Link AI Hub logo"
+              className="h-10 w-10 rounded-full object-cover"
+            />
+            <div className="hidden md:block">
+              <p className="text-sm font-semibold text-foreground">Vision-Link AI Hub</p>
+              <p className="text-xs text-muted-foreground">Health QA Dashboard</p>
+            </div>
+          </div>
           <div className="flex-1" />
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground hidden sm:block">Zindi Multilingual Health QA</span>

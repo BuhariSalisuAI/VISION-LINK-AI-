@@ -66,6 +66,7 @@ class Settings(BaseSettings):
     # Security
     # =========================
     SECRET_KEY: str = "vision-link-ai-secret"
+    HF_TOKEN: str = ""
 
     # =========================
     # Pydantic Settings
@@ -78,3 +79,7 @@ class Settings(BaseSettings):
 
 # Global settings object
 settings = Settings()
+
+# Set HF_TOKEN environment variable for Hugging Face Hub
+import os
+os.environ['HF_TOKEN'] = settings.HF_TOKEN

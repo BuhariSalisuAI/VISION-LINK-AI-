@@ -82,3 +82,8 @@ CMakeLists.txt.user*
 .uic/
 /build*/
 /.qtcreator/
+# Frontend generated files
+/frontend/dist/
+/frontend/node_modules/
+backend/.env
+backend/venv/
